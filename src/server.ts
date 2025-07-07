@@ -136,17 +136,25 @@ class GHLMCPServer {
 
     // Validate required configuration
     if (!config.accessToken) {
-      throw new Error('GHL_API_KEY environment variable is required');
+      throw new Error('GHL_API_KEY environment variable is required. Please set your Private Integrations API key from GoHighLevel Settings → Integrations → Private Integrations');
+    }
+
+    if (config.accessToken.includes('your_ghl_') || config.accessToken === 'your_ghl_api_key_here') {
+      throw new Error('GHL_API_KEY contains placeholder value. Please replace with your actual Private Integrations API key from GoHighLevel Settings → Integrations → Private Integrations');
     }
 
     if (!config.locationId) {
-      throw new Error('GHL_LOCATION_ID environment variable is required');
+      throw new Error('GHL_LOCATION_ID environment variable is required. Please set your Location ID from GoHighLevel Settings → Company → Locations');
+    }
+
+    if (config.locationId.includes('your_ghl_') || config.locationId === 'your_ghl_location_id_here') {
+      throw new Error('GHL_LOCATION_ID contains placeholder value. Please replace with your actual Location ID from GoHighLevel Settings → Company → Locations');
     }
 
     process.stderr.write('[GHL MCP] Initializing GHL API client...\n');
     process.stderr.write(`[GHL MCP] Base URL: ${config.baseUrl}\n`);
     process.stderr.write(`[GHL MCP] Version: ${config.version}\n`);
-    process.stderr.write(`[GHL MCP] Location ID: ${config.locationId}\n`);
+    process.stderr.write(`[GHL MCP] Location ID: ${config.locationId.substring(0, 8)}...\n`);
 
     return new GHLApiClient(config);
   }

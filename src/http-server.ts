@@ -147,17 +147,25 @@ class GHLMCPHttpServer {
 
     // Validate required configuration
     if (!config.accessToken) {
-      throw new Error('GHL_API_KEY environment variable is required');
+      throw new Error('GHL_API_KEY environment variable is required. Please set your Private Integrations API key from GoHighLevel Settings → Integrations → Private Integrations');
+    }
+
+    if (config.accessToken.includes('your_ghl_') || config.accessToken === 'your_ghl_api_key_here') {
+      throw new Error('GHL_API_KEY contains placeholder value. Please replace with your actual Private Integrations API key from GoHighLevel Settings → Integrations → Private Integrations');
     }
 
     if (!config.locationId) {
-      throw new Error('GHL_LOCATION_ID environment variable is required');
+      throw new Error('GHL_LOCATION_ID environment variable is required. Please set your Location ID from GoHighLevel Settings → Company → Locations');
+    }
+
+    if (config.locationId.includes('your_ghl_') || config.locationId === 'your_ghl_location_id_here') {
+      throw new Error('GHL_LOCATION_ID contains placeholder value. Please replace with your actual Location ID from GoHighLevel Settings → Company → Locations');
     }
 
     console.log('[GHL MCP HTTP] Initializing GHL API client...');
     console.log(`[GHL MCP HTTP] Base URL: ${config.baseUrl}`);
     console.log(`[GHL MCP HTTP] Version: ${config.version}`);
-    console.log(`[GHL MCP HTTP] Location ID: ${config.locationId}`);
+    console.log(`[GHL MCP HTTP] Location ID: ${config.locationId.substring(0, 8)}...`);
 
     return new GHLApiClient(config);
   }
