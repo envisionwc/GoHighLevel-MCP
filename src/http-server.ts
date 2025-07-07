@@ -137,6 +137,8 @@ class GHLMCPHttpServer {
    * Initialize GoHighLevel API client with configuration
    */
   private initializeGHLClient(): GHLApiClient {
+    console.log('[GHL MCP HTTP] Loading environment configuration...');
+    
     // Load configuration from environment
     const config: GHLConfig = {
       accessToken: process.env.GHL_API_KEY || '',
@@ -145,27 +147,83 @@ class GHLMCPHttpServer {
       locationId: process.env.GHL_LOCATION_ID || ''
     };
 
+    console.log('[GHL MCP HTTP] Environment variables status:');
+    console.log(`  - GHL_API_KEY: ${config.accessToken ? '✅ Set' : '❌ Missing'}`);
+    console.log(`  - GHL_BASE_URL: ${config.baseUrl ? '✅ Set' : '❌ Missing'}`);
+    console.log(`  - GHL_LOCATION_ID: ${config.locationId ? '✅ Set' : '❌ Missing'}`);
+    console.log('');
+
     // Validate required configuration
     if (!config.accessToken) {
-      throw new Error('GHL_API_KEY environment variable is required. Please set your Private Integrations API key from GoHighLevel Settings → Integrations → Private Integrations');
+      console.error('❌ CONFIGURATION ERROR: Missing GHL_API_KEY');
+      console.error('');
+      console.error('🔧 HOW TO FIX:');
+      console.error('1. Create or edit the .env file in your project root');
+      console.error('2. Get your Private Integrations API key:');
+      console.error('   • Login to GoHighLevel');
+      console.error('   • Go to Settings → Integrations → Private Integrations');
+      console.error('   • Create new integration or use existing one');
+      console.error('   • Copy the API key');
+      console.error('3. Add this line to your .env file:');
+      console.error('   GHL_API_KEY=your_actual_api_key_here');
+      console.error('4. Restart the server');
+      console.error('');
+      throw new Error('GHL_API_KEY environment variable is required');
     }
 
     if (config.accessToken.includes('your_ghl_') || config.accessToken === 'your_ghl_api_key_here') {
-      throw new Error('GHL_API_KEY contains placeholder value. Please replace with your actual Private Integrations API key from GoHighLevel Settings → Integrations → Private Integrations');
+      console.error('❌ CONFIGURATION ERROR: GHL_API_KEY contains placeholder value');
+      console.error('');
+      console.error('🔧 HOW TO FIX:');
+      console.error('1. Replace the placeholder in your .env file');
+      console.error('2. Get your actual Private Integrations API key:');
+      console.error('   • Login to GoHighLevel');
+      console.error('   • Go to Settings → Integrations → Private Integrations');
+      console.error('   • Create new integration or use existing one');
+      console.error('   • Copy the API key');
+      console.error('3. Update your .env file:');
+      console.error('   GHL_API_KEY=your_actual_api_key_here');
+      console.error('4. Restart the server');
+      console.error('');
+      throw new Error('GHL_API_KEY contains placeholder value');
     }
 
     if (!config.locationId) {
-      throw new Error('GHL_LOCATION_ID environment variable is required. Please set your Location ID from GoHighLevel Settings → Company → Locations');
+      console.error('❌ CONFIGURATION ERROR: Missing GHL_LOCATION_ID');
+      console.error('');
+      console.error('🔧 HOW TO FIX:');
+      console.error('1. Get your Location ID:');
+      console.error('   • Login to GoHighLevel');
+      console.error('   • Go to Settings → Company → Locations');
+      console.error('   • Copy your Location ID');
+      console.error('2. Add this line to your .env file:');
+      console.error('   GHL_LOCATION_ID=your_actual_location_id_here');
+      console.error('3. Restart the server');
+      console.error('');
+      throw new Error('GHL_LOCATION_ID environment variable is required');
     }
 
     if (config.locationId.includes('your_ghl_') || config.locationId === 'your_ghl_location_id_here') {
-      throw new Error('GHL_LOCATION_ID contains placeholder value. Please replace with your actual Location ID from GoHighLevel Settings → Company → Locations');
+      console.error('❌ CONFIGURATION ERROR: GHL_LOCATION_ID contains placeholder value');
+      console.error('');
+      console.error('🔧 HOW TO FIX:');
+      console.error('1. Replace the placeholder in your .env file');
+      console.error('2. Get your actual Location ID:');
+      console.error('   • Login to GoHighLevel');
+      console.error('   • Go to Settings → Company → Locations');
+      console.error('   • Copy your Location ID');
+      console.error('3. Update your .env file:');
+      console.error('   GHL_LOCATION_ID=your_actual_location_id_here');
+      console.error('4. Restart the server');
+      console.error('');
+      throw new Error('GHL_LOCATION_ID contains placeholder value');
     }
 
     console.log('[GHL MCP HTTP] Initializing GHL API client...');
     console.log(`[GHL MCP HTTP] Base URL: ${config.baseUrl}`);
     console.log(`[GHL MCP HTTP] Version: ${config.version}`);
     console.log(`[GHL MCP HTTP] Location ID: ${config.locationId.substring(0, 8)}...`);
+    console.log('');
 
     return new GHLApiClient(config);
   }
@@ -691,15 +749,13 @@ class GHLMCPHttpServer {
    * Start the HTTP server
    */
   async start(): Promise<void> {
-    console.log('🚀 Starting GoHighLevel MCP HTTP Server...');
-    console.log('=========================================');
-    
     try {
       // Test GHL API connection
       await this.testGHLConnection();
       
       // Start HTTP server
       this.app.listen(this.port, '0.0.0.0', () => {
+        console.log('=========================================');
         console.log('✅ GoHighLevel MCP HTTP Server started successfully!');
         console.log(`🌐 Server running on: http://0.0.0.0:${this.port}`);
         console.log(`🔗 SSE Endpoint: http://0.0.0.0:${this.port}/sse`);
@@ -733,6 +789,10 @@ function setupGracefulShutdown(): void {
  */
 async function main(): Promise<void> {
   try {
+    console.log('🚀 Starting GoHighLevel MCP HTTP Server...');
+    console.log('=========================================');
+    console.log('');
+    
     // Setup graceful shutdown
     setupGracefulShutdown();
     
@@ -741,7 +801,28 @@ async function main(): Promise<void> {
     await server.start();
     
   } catch (error) {
-    console.error('💥 Fatal error:', error);
+    console.error('💥 FATAL ERROR - Server failed to start');
+    console.error('=========================================');
+    console.error('');
+    
+    if (error instanceof Error) {
+      if (error.message.includes('GHL_API_KEY') || error.message.includes('GHL_LOCATION_ID')) {
+        console.error('📋 QUICK SETUP CHECKLIST:');
+        console.error('□ Create .env file in project root');
+        console.error('□ Set GHL_API_KEY with your Private Integrations API key');
+        console.error('□ Set GHL_LOCATION_ID with your Location ID');
+        console.error('□ Restart the server');
+        console.error('');
+        console.error('📖 For detailed setup instructions, see README.md');
+      } else {
+        console.error(`Error: ${error.message}`);
+      }
+    } else {
+      console.error('Unknown error:', error);
+    }
+    
+    console.error('');
+    console.error('=========================================');
     process.exit(1);
   }
 }
