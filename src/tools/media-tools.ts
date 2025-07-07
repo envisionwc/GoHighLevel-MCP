@@ -1,4 +1,4 @@
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPGetMediaFilesParams,
   MCPUploadMediaFileParams,
@@ -6,7 +6,7 @@ import {
   GHLGetMediaFilesRequest,
   GHLUploadMediaFileRequest,
   GHLDeleteMediaRequest
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export interface Tool {
   name: string;

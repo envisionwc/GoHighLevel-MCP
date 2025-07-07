@@ -56,9 +56,9 @@ import {
   GHLUpdateProductReviewRequest,
   GHLDeleteProductReviewRequest,
   GHLBulkUpdateProductReviewsRequest
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
 export interface ProductsToolResult {

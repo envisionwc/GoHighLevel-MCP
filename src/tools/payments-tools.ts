@@ -1,5 +1,5 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   CreateWhiteLabelIntegrationProviderDto,
   ListIntegrationProvidersResponse,
@@ -26,7 +26,7 @@ import {
   DeleteCustomProviderConfigDto,
   DeleteCustomProviderResponse,
   DisconnectCustomProviderResponse
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export class PaymentsTools {
   constructor(private client: GHLApiClient) {}

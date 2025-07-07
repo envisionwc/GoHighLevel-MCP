@@ -1,5 +1,5 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPCreateAssociationParams,
   MCPUpdateAssociationParams,
@@ -11,7 +11,7 @@ import {
   MCPCreateRelationParams,
   MCPGetRelationsByRecordParams,
   MCPDeleteRelationParams
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export class AssociationTools {
   constructor(private apiClient: GHLApiClient) {}

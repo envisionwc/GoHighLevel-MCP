@@ -4,7 +4,7 @@
  */
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPSearchLocationsParams,
   MCPGetLocationParams,
@@ -35,7 +35,7 @@ import {
   GHLLocationTag,
   GHLLocationCustomField,
   GHLLocationCustomValue
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 /**
  * Location Tools Class

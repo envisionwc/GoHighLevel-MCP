@@ -4,7 +4,7 @@
  */
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPSendSMSParams,
   MCPSendEmailParams,
@@ -37,7 +37,7 @@ import {
   GHLMessageTranscriptionResponse,
   GHLLiveChatTypingResponse,
   GHLUploadFilesResponse
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 /**
  * Conversation Tools Class

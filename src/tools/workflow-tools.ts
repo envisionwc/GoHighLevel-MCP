@@ -1,8 +1,8 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import { 
   MCPGetWorkflowsParams
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export class WorkflowTools {
   constructor(private apiClient: GHLApiClient) {}

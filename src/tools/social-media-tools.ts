@@ -1,5 +1,5 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPSearchPostsParams,
   MCPCreatePostParams,
@@ -23,7 +23,7 @@ import {
   MCPStartOAuthParams,
   MCPGetOAuthAccountsParams,
   MCPAttachOAuthAccountParams
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export class SocialMediaTools {
   constructor(private ghlClient: GHLApiClient) {}

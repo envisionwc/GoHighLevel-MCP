@@ -33,6 +33,7 @@ import { WorkflowTools } from './tools/workflow-tools';
 import { SurveyTools } from './tools/survey-tools';
 import { StoreTools } from './tools/store-tools';
 import { ProductsTools } from './tools/products-tools.js';
+import { ProductsTools } from './tools/products-tools';
 import { GHLConfig } from './types/ghl-types';
 
 // Load environment variables

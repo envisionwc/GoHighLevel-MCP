@@ -1,4 +1,4 @@
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPGetAllObjectsParams,
   MCPCreateObjectSchemaParams,
@@ -15,7 +15,7 @@ import {
   GHLCreateObjectRecordRequest,
   GHLUpdateObjectRecordRequest,
   GHLSearchObjectRecordsRequest
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export interface Tool {
   name: string;

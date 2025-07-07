@@ -12,7 +12,7 @@ import {
   GHLBlogSite,
   GHLBlogAuthor,
   GHLBlogCategory
-} from '../../src/types/ghl-types.js';
+} from '../../src/types/ghl-types';
 
 // Mock test data
 export const mockContact: GHLContact = {

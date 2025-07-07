@@ -1,5 +1,5 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPV2CreateCustomFieldParams,
   MCPV2UpdateCustomFieldParams,
@@ -9,7 +9,7 @@ import {
   MCPV2CreateCustomFieldFolderParams,
   MCPV2UpdateCustomFieldFolderParams,
   MCPV2DeleteCustomFieldFolderParams
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 export class CustomFieldV2Tools {
   constructor(private apiClient: GHLApiClient) {}

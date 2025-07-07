@@ -4,7 +4,7 @@
  */
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPCreateBlogPostParams,
   MCPUpdateBlogPostParams,
@@ -18,7 +18,7 @@ import {
   GHLBlogSite,
   GHLBlogAuthor,
   GHLBlogCategory
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 /**
  * Blog Tools Class

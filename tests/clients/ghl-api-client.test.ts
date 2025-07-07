@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect, beforeEach, jest, afterEach } from '@jest/globals';
-import { GHLApiClient } from '../../src/clients/ghl-api-client.js';
+import { GHLApiClient } from '../../src/clients/ghl-api-client';
 
 // Mock axios
 jest.mock('axios', () => ({

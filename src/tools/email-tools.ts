@@ -4,7 +4,7 @@
  */
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { GHLApiClient } from '../clients/ghl-api-client.js';
+import { GHLApiClient } from '../clients/ghl-api-client';
 import {
   MCPGetEmailCampaignsParams,
   MCPCreateEmailTemplateParams,
@@ -13,7 +13,7 @@ import {
   MCPDeleteEmailTemplateParams,
   GHLEmailCampaign,
   GHLEmailTemplate
-} from '../types/ghl-types.js';
+} from '../types/ghl-types';
 
 /**
  * Email Tools Class

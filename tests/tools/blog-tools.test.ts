@@ -4,8 +4,8 @@
  */
 
 import { describe, it, expect, beforeEach, jest } from '@jest/globals';
-import { BlogTools } from '../../src/tools/blog-tools.js';
-import { MockGHLApiClient, mockBlogPost, mockBlogSite, mockBlogAuthor, mockBlogCategory } from '../mocks/ghl-api-client.mock.js';
+import { BlogTools } from '../../src/tools/blog-tools';
+import { MockGHLApiClient, mockBlogPost, mockBlogSite, mockBlogAuthor, mockBlogCategory } from '../mocks/ghl-api-client.mock';
 
 describe('BlogTools', () => {
   let blogTools: BlogTools;

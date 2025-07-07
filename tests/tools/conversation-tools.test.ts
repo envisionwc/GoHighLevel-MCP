@@ -4,8 +4,8 @@
  */
 
 import { describe, it, expect, beforeEach, jest } from '@jest/globals';
-import { ConversationTools } from '../../src/tools/conversation-tools.js';
-import { MockGHLApiClient, mockConversation, mockMessage } from '../mocks/ghl-api-client.mock.js';
+import { ConversationTools } from '../../src/tools/conversation-tools';
+import { MockGHLApiClient, mockConversation, mockMessage } from '../mocks/ghl-api-client.mock';
 
 describe('ConversationTools', () => {
   let conversationTools: ConversationTools;
